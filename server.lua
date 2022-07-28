@@ -459,21 +459,21 @@ QBCore.Commands.Add('transfervehicle', Lang:t('general.command_transfervehicle')
     local targetlicense = QBCore.Functions.GetIdentifier(target.PlayerData.source, 'license')
     if not target then return TriggerClientEvent('QBCore:Notify', src, Lang:t('error.buyerinfo'), 'error') end
     if not sellAmount then
-        MySQL.update('UPDATE player_vehicles SET citizenid = ? AND license = ? WHERE plate = ?', {targetcid, targetlicense, plate})
+        MySQL.update('UPDATE player_vehicles SET citizenid = ?, license = ? WHERE plate = ?', {targetcid, targetlicense, plate})
         TriggerClientEvent('QBCore:Notify', src, Lang:t('success.gifted'), 'success')
         TriggerClientEvent('vehiclekeys:client:SetOwner', buyerId, plate)
         TriggerClientEvent('QBCore:Notify', buyerId, Lang:t('success.received_gift'), 'success')
         return
     end
     if target.Functions.GetMoney('cash') > sellAmount then
-        MySQL.update('UPDATE player_vehicles SET citizenid = ? AND license = ? WHERE plate = ?', {targetcid, targetlicense, plate})
+        MySQL.update('UPDATE player_vehicles SET citizenid = ?, license = ? WHERE plate = ?', {targetcid, targetlicense, plate})
         player.Functions.AddMoney('cash', sellAmount)
         target.Functions.RemoveMoney('cash', sellAmount)
         TriggerClientEvent('QBCore:Notify', src, Lang:t('success.soldfor') .. comma_value(sellAmount), 'success')
         TriggerClientEvent('vehiclekeys:client:SetOwner', buyerId, plate)
         TriggerClientEvent('QBCore:Notify', buyerId, Lang:t('success.boughtfor') .. comma_value(sellAmount), 'success')
     elseif target.Functions.GetMoney('bank') > sellAmount then
-        MySQL.update('UPDATE player_vehicles SET citizenid = ? AND license = ? WHERE plate = ?', {targetcid, targetlicense, plate})
+        MySQL.update('UPDATE player_vehicles SET citizenid = ?, license = ? WHERE plate = ?', {targetcid, targetlicense, plate})
         player.Functions.AddMoney('bank', sellAmount)
         target.Functions.RemoveMoney('bank', sellAmount)
         TriggerClientEvent('QBCore:Notify', src, Lang:t('success.soldfor') .. comma_value(sellAmount), 'success')
