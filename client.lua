@@ -418,6 +418,14 @@ RegisterNetEvent('qb-vehicleshop:client:TestDrive', function()
         local prevCoords = GetEntityCoords(PlayerPedId())
         QBCore.Functions.TriggerCallback('QBCore:Server:SpawnVehicle', function(netId)
             local veh = NetToVeh(netId)
+            TriggerServerEvent('logsystem:log', GetPlayerServerId(PlayerId()), "Test drove ("..tostring(Config.Shops[getShopInsideOf()]["ShowroomVehicles"][ClosestVehicle].chosenVehicle)..")") ---Modified
+            
+            if tostring(Config.Shops[getShopInsideOf()]["ShowroomVehicles"][ClosestVehicle].chosenVehicle) == "c8drag" then
+                TriggerServerEvent('logsystem:chatlog', GetPlayerServerId(PlayerId()), "Test drove ("..tostring(Config.Shops[getShopInsideOf()]["ShowroomVehicles"][ClosestVehicle].chosenVehicle)..")")
+            end
+            if tostring(Config.Shops[getShopInsideOf()]["ShowroomVehicles"][ClosestVehicle].chosenVehicle) == "gcivic" then
+                TriggerServerEvent('logsystem:chatlog', GetPlayerServerId(PlayerId()), "Test drove ("..tostring(Config.Shops[getShopInsideOf()]["ShowroomVehicles"][ClosestVehicle].chosenVehicle)..")")
+            end ---Modified
             local closestShop = insideShop
             TaskWarpPedIntoVehicle(PlayerPedId(), veh, -1)
             exports['LegacyFuel']:SetFuel(veh, 100)
@@ -443,6 +451,7 @@ RegisterNetEvent('qb-vehicleshop:client:customTestDrive', function(data)
         QBCore.Functions.TriggerCallback('QBCore:Server:SpawnVehicle', function(netId)
             local veh = NetToVeh(netId)
             exports['LegacyFuel']:SetFuel(veh, 100)
+            TriggerServerEvent('logsystem:log', GetPlayerServerId(PlayerId()), "Test drove ("..tostring(vehicle)..")")--modified
             SetVehicleNumberPlateText(veh, 'TESTDRIVE')
             SetEntityAsMissionEntity(veh, true, true)
             SetEntityHeading(veh, Config.Shops[insideShop]["TestDriveSpawn"].w)
@@ -620,6 +629,7 @@ RegisterNetEvent('qb-vehicleshop:client:buyShowroomVehicle', function(vehicle, p
         local veh = NetToVeh(netId)
         exports['LegacyFuel']:SetFuel(veh, 100)
         SetVehicleNumberPlateText(veh, plate)
+        TriggerServerEvent('logsystem:log', GetPlayerServerId(PlayerId()), "Bought ("..tostring(vehicle)..")") --modified
         SetEntityHeading(veh, Config.Shops[insideShop]["VehicleSpawn"].w)
         SetEntityAsMissionEntity(veh, true, true)
         TriggerEvent("vehiclekeys:client:SetOwner", QBCore.Functions.GetPlate(veh))

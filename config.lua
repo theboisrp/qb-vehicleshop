@@ -174,7 +174,9 @@ Config.Shops = {
         ['blipSprite'] = 410, -- Blip sprite
         ['blipColor'] = 3, -- Blip color
         ['Categories'] = {-- Categories available to browse
-            ['boats'] = 'Boats'
+            ['boats'] = 'Boats',
+            ['sub'] = 'Subs',
+            ['jetski'] = 'Jet Skis'
         },
         ['TestDriveTimeLimit'] = 1.5, -- Time in minutes until the vehicle gets deleted
         ['Location'] = vector3(-738.25, -1334.38, 1.6), -- Blip Location
@@ -224,7 +226,8 @@ Config.Shops = {
         ['blipColor'] = 3, -- Blip color
         ['Categories'] = {-- Categories available to browse
             ['helicopters'] = 'Helicopters',
-            ['planes'] = 'Planes'
+            ['planes'] = 'Planes',
+            ['jet'] = 'Jet'
         },
         ['TestDriveTimeLimit'] = 1.5, -- Time in minutes until the vehicle gets deleted
         ['Location'] = vector3(-1652.76, -3143.4, 13.99), -- Blip Location
